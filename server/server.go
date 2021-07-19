@@ -81,7 +81,7 @@ func (s *Server) getBlockInfo(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	blockNum, err := strconv.Atoi(mux.Vars(r)["block"])
-	if err != nil {
+	if err != nil || blockNum < 0 {
 		log.Printf("Failed to parse block number: %v \n", err)
 		w.WriteHeader(http.StatusBadRequest)
 		return
