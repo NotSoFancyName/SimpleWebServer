@@ -26,7 +26,6 @@ func main() {
 	case <-done:
 		stop <- struct{}{}
 		log.Println("Request to stop the server")
+		<-stop
 	}
-
-	<-stop
 }
