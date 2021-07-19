@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  web:
+    build: .
+    container_name: simple-web-server
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    depends_on:
+      - "db"
+  db:
+    image: postgres
+    container_name: sws-postgres
+    restart: unless-stopped
+    environment:
+        POSTGRES_PASSWORD: pwadmin
+        POSTGRES_USER: postgres
+        POSTGRES_DB: swsdb
